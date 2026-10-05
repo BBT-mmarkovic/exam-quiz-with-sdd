@@ -1,22 +1,22 @@
 # Feature: <name>
 
-## Goal
+## Ziel
 
-<What should this feature achieve?>
+<Was setzt dieses Feature um?>
 
-## User scenario
+## User Story
 
-As a <user>, I want <action> so that <benefit>.
+Als <user>, möchte ich <action> damit <benefit>.
 
-## Scope
+## Abgrenzung
 
-- Included: <behavior>
-- Excluded: <behavior>
+- Inklusiv: <behavior>
+- Exklusiv: <behavior>
 
-## Acceptance criteria
+## Akzeptanzkriterien
 
-- Given <context>, when <action>, then <expected result>.
+- In/Unter/Als <context>, wenn <action>, dann <expected result>.
 
-## Open questions
+## Offene Fragen
 
-- <Question to resolve before implementation, or "None".>
+- <Fragen bevor mit der Implementierung begonnen werden kann, sonst "Keine".>

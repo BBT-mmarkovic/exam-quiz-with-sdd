@@ -1,13 +1,13 @@
 # Plan: <feature>
 
-## Approach
+## Vorgehen
 
-<Describe the simplest solution. Agree on it before coding.>
+<Beschreibe die einfachste Lösung. Warte auf Zustimmung, bevor du mit der Implementierung beginnst.>
 
-## Affected components
+## Betroffene Komponenten
 
-- <Component or file>
+- <Komponente oder Datei>
 
 ## Testing
 
-- <How acceptance criteria and important edge cases will be verified>
+- <Wie Akzeptanzkriterien überprüfen, inkl. Edge-Cases>

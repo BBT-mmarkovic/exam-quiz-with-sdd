@@ -7,6 +7,11 @@ A Questionnaire Application created using Spec Driven Development (SDD)
 We define and agree on expected behavior before writing code, then implement and
 verify it against testable acceptance criteria.
 
+```mermaid
+graph LR
+    1[1. Spec] --> 2[2. Plan] --> 3[3. Break Down] --> 4[4. Implement] --> 5[5. Verify]
+```
+
 For each feature, copy [`specs/_template`](specs/_template) to `specs/<feature-name>/`:
 
 1. **Specify** in `spec.md`: goal, user scenario, scope, and acceptance criteria.

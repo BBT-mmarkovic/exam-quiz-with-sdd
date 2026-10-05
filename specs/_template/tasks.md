@@ -1,17 +1,17 @@
 # Tasks: <feature>
 
-## Implement
+## Implementieren
 
-- [ ] Implement <behavior>.
-- [ ] Add tests for acceptance criteria and important edge cases.
+- [ ] <behavior> umsetzen.
+- [ ] Tests und Akzeptanzkriterien mit Edge-Cases.
 
-## Verify
+## Überprüfen
 
-- [ ] Check each acceptance criterion.
-- [ ] Run relevant tests and build; record results below.
-- [ ] Review changes and align documentation.
+- [ ] Überprüfe Akzeptanzkriterium.
+- [ ] Führe automatisierte Tests durch.
+- [ ] Review Änderungen und Ergänzungen im Code und Dokumentation.
 - [ ] Commit.
 
-## Check results
+## Prüfergebnisse
 
-<Commands and outcomes, including anything not run and why.>
+<Commands und Ergebnisse, inklusive solcher, die nicht ausgeführt wurden>
