@@ -1,8 +1,36 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Eine Frage beantworten";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="question-card" aria-labelledby="question-title">
+    <p class="eyebrow">Übungsfrage</p>
+    <h1 id="question-title">Wie lautet die Hauptstadt von Kanada?</h1>
+
+    <form id="answer-form" asp-controller="Home" asp-action="SubmitAnswer" method="post">
+        @Html.AntiForgeryToken()
+        <fieldset id="answer-options" class="answer-options">
+            <legend class="visually-hidden">Wähle eine Antwort</legend>
+            <label class="answer-option" for="answer-toronto">
+                <input id="answer-toronto" type="radio" name="answer" value="Toronto" />
+                <span>Toronto</span>
+            </label>
+            <label class="answer-option" for="answer-ottawa">
+                <input id="answer-ottawa" type="radio" name="answer" value="Ottawa" />
+                <span>Ottawa</span>
+            </label>
+            <label class="answer-option" for="answer-montreal">
+                <input id="answer-montreal" type="radio" name="answer" value="Montreal" />
+                <span>Montreal</span>
+            </label>
+            <label class="answer-option" for="answer-vancouver">
+                <input id="answer-vancouver" type="radio" name="answer" value="Vancouver" />
+                <span>Vancouver</span>
+            </label>
+        </fieldset>
+
+        <button id="submit-answer" class="btn btn-primary answer-button" type="submit" disabled>
+            Antworten
+        </button>
+        <p id="answer-feedback" class="answer-feedback" role="status" aria-live="polite"></p>
+    </form>
+</section>
