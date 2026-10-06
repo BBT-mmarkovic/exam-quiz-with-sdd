@@ -8,6 +8,7 @@ Use C# and ASP.NET Core MVC with Razor views; avoid legacy ASP.NET MVC 5.
 ## Spec-first workflow
 
 - Define feature requirements and testable acceptance criteria in `specs/` before implementation.
+- Keep the feature overview in `specs/README.md` up to date with each specification.
 - Ask about unclear requirements; do not invent product behavior.
 - Agree on an implementation plan before coding. Keep specifications and behavior aligned.
 - Review the relevant ADRs in `docs/architecture-decision-log/` and follow their accepted decisions.
