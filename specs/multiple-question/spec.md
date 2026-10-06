@@ -2,8 +2,9 @@
 
 ## Ziel
 
-Ein Webbenutzer beantwortet vier Fragen nacheinander und erhält am Schluss
-seinen Punktestand. Die Benutzeroberfläche verwendet Deutsch (Schweiz, `de-CH`).
+Ein Webbenutzer beantwortet nacheinander alle konfigurierten Fragen und erhält
+am Schluss seinen Punktestand. Die Benutzeroberfläche verwendet Deutsch
+(Schweiz, `de-CH`).
 
 ## User Story
 
@@ -12,28 +13,31 @@ mein Wissen prüfen und anschliessend mein Ergebnis sehen kann.
 
 ## Abgrenzung
 
-- Inklusiv: vier feste Fragen mit je vier Antwortoptionen, serverseitige Prüfung,
-  Laden der Fragen aus einer Konfigurationsdatei, automatischer Wechsel zur
-  nächsten Frage ohne Zwischenrückmeldung und eine Ergebnisübersicht mit
-  Punktestand.
-- Exklusiv: zufällige Reihenfolge, weitere Fragen, Benutzerverwaltung,
+- Inklusiv: eine konfigurierbare Anzahl Fragen mit je vier Antwortoptionen,
+  serverseitige Prüfung, Laden der Fragen aus einer Konfigurationsdatei,
+  automatischer Wechsel zur nächsten Frage ohne Zwischenrückmeldung und eine
+  Ergebnisübersicht mit Punktestand.
+- Exklusiv: zufällige Reihenfolge, Benutzerverwaltung,
   Bearbeiten oder Verwalten der Fragen zur Laufzeit, Datenbank, dauerhafte
   Speicherung, Fortsetzen nach Neuladen und serverseitige Session.
 
 ## Fragenkonfiguration
 
-- Die vier Fragen, Antwortoptionen und jeweils richtige Antwort werden aus einer
+- Die Fragen, Antwortoptionen und jeweils richtige Antwort werden aus einer
   Konfigurationsdatei geladen und nicht in Controller-, View- oder
-  JavaScript-Code hinterlegt.
+  JavaScript-Code hinterlegt. Die Anzahl der Fragen wird durch die Einträge in
+  dieser Datei bestimmt; es gibt kein fixes Fragenlimit.
 - Die Konfiguration wird serverseitig eingelesen; richtige Antworten werden
   nicht an den Browser ausgeliefert, bevor eine Antwort geprüft wird.
-- Die Konfigurationsdatei enthält alle vier Fragen in der festgelegten
+- Die Konfigurationsdatei enthält mindestens eine Frage in der festgelegten
   Reihenfolge. Jede Frage hat genau vier eindeutige Optionen und genau eine
   richtige Antwort, die einer dieser Optionen entspricht.
 
 ## Fragen
 
-Die Konfigurationsdatei enthält folgende Inhalte:
+Die initiale Konfigurationsdatei enthält folgende vier Fragen. Weitere Fragen
+können durch Konfiguration ergänzt werden, ohne die Anwendungscode-Logik zu
+ändern.
 
 ### Frage 1
 
@@ -93,15 +97,19 @@ Richtige Antwort: **Elektronen**.
   zählt einen Punkt; eine falsche Antwort zählt null Punkte.
 - Nach der Prüfung erscheint ohne Zwischenrückmeldung automatisch die nächste
   Frage. Während der Anfrage kann keine weitere Antwort abgegeben werden.
-- Fragen erscheinen in der festgelegten Reihenfolge 1 bis 4.
-- Nach der Antwort auf Frage 4 wird keine weitere Frage angezeigt. Stattdessen
-  erscheint der Punktestand exakt im Format „x von 4 richtig“, wobei `x` die
-  Anzahl richtiger Antworten ist.
+- Fragen erscheinen in der Reihenfolge, in der sie in der Konfigurationsdatei
+  definiert sind.
+- Nach der Antwort auf die letzte konfigurierte Frage wird keine weitere Frage
+  angezeigt. Stattdessen erscheint der Punktestand exakt im Format
+  „x von n richtig“, wobei `x` die Anzahl richtiger Antworten und `n` die
+  Gesamtzahl der konfigurierten Fragen ist.
 - Die richtige Antwort wird nicht vor der Prüfung im HTML oder JavaScript
   offengelegt.
 - Die Frageninhalte und richtigen Antworten werden zur Laufzeit aus der
   Konfigurationsdatei gelesen, nicht aus fest im Anwendungscode hinterlegten
   Werten.
+- Die Anzahl der Fragen ist nicht im Anwendungscode limitiert und entspricht
+  der Anzahl der gültigen Fragen in der Konfigurationsdatei.
 - Fehlt die Konfigurationsdatei oder ist sie ungültig, startet die Anwendung
   nicht mit stillschweigend ersetzten oder unvollständigen Fragen, sondern
   meldet den Konfigurationsfehler explizit.
