@@ -8,7 +8,7 @@ Copy `_template` to `specs/<feature-name>/` for each small feature.
 | --- | --- | --- |
 | `project-setup` | Abgeschlossen | — |
 | `single-question` | Abgeschlossen | `project-setup` |
-| `multiple-question` | Spec bereit zur Abstimmung | `single-question` |
+| `multiple-question` | Plan bereit zur Abstimmung | `single-question` |
 
 1. Specify: fill in `spec.md` and resolve open questions.
 2. Plan: fill in `plan.md` and agree on the approach before coding.
