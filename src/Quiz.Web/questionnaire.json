@@ -1,0 +1,44 @@
+{
+  "Questions": [
+    {
+      "Text": "Wie lautet die Hauptstadt von Kanada?",
+      "Options": [
+        "Toronto",
+        "Ottawa",
+        "Montreal",
+        "Vancouver"
+      ],
+      "CorrectAnswer": "Ottawa"
+    },
+    {
+      "Text": "Welches der folgenden Länder oder Gebiete ist flächenmässig am grössten?",
+      "Options": [
+        "Argentinien",
+        "Kasachstan",
+        "Demokratische Republik Kongo",
+        "Grönland (Dänemark)"
+      ],
+      "CorrectAnswer": "Kasachstan"
+    },
+    {
+      "Text": "Welcher dieser Flüsse ist am längsten?",
+      "Options": [
+        "Gelber Fluss",
+        "Yangtze",
+        "Kongo",
+        "Amazonas"
+      ],
+      "CorrectAnswer": "Amazonas"
+    },
+    {
+      "Text": "Welche Teilchen bewegen sich bei einem Blitz hauptsächlich?",
+      "Options": [
+        "Elektronen",
+        "Protonen",
+        "Photonen",
+        "Neutronen"
+      ],
+      "CorrectAnswer": "Elektronen"
+    }
+  ]
+}

@@ -4,7 +4,11 @@ if (answerForm) {
     const answerOptions = answerForm.querySelector("#answer-options");
     const submitButton = answerForm.querySelector("#submit-answer");
     const feedback = answerForm.querySelector("#answer-feedback");
-    const radios = answerForm.querySelectorAll('input[name="answer"]');
+    const questionTitle = document.querySelector("#question-title");
+    const questionLabel = document.querySelector("#question-label");
+    const questionIndex = answerForm.querySelector("#question-index");
+    const resultSummary = document.querySelector("#quiz-result");
+    let correctAnswers = 0;
     let isSubmitting = false;
 
     answerForm.addEventListener("change", () => {
@@ -37,21 +41,60 @@ if (answerForm) {
             }
 
             const result = await response.json();
-            feedback.textContent = result.message;
-
-            for (const radio of radios) {
-                if (radio.value === result.correctAnswer) {
-                    radio.closest(".answer-option").classList.add("is-correct");
-                }
+            if (result.isCorrect) {
+                correctAnswers++;
             }
+
+            if (result.isComplete) {
+                answerForm.hidden = true;
+                questionTitle.hidden = true;
+                questionLabel.hidden = true;
+                resultSummary.textContent = `${correctAnswers} von ${result.totalQuestions} richtig`;
+                resultSummary.hidden = false;
+                return;
+            }
+
+            renderQuestion(result.nextQuestion);
         } catch {
             feedback.textContent = "Die Antwort konnte nicht überprüft werden. Bitte versuche es erneut.";
             answerOptions.disabled = false;
             submitButton.disabled = !answerForm.querySelector('input[name="answer"]:checked');
             isSubmitting = false;
-            return;
         }
-
-        isSubmitting = false;
     });
+
+    function renderQuestion(question) {
+        questionTitle.textContent = question.text;
+        questionIndex.value = question.index;
+        answerOptions.disabled = false;
+        answerOptions.replaceChildren();
+
+        const legend = document.createElement("legend");
+        legend.className = "visually-hidden";
+        legend.textContent = "Wähle eine Antwort";
+        answerOptions.append(legend);
+
+        question.options.forEach((option, optionIndex) => {
+            const inputId = `answer-${question.index}-${optionIndex}`;
+            const label = document.createElement("label");
+            label.className = "answer-option";
+            label.htmlFor = inputId;
+
+            const input = document.createElement("input");
+            input.id = inputId;
+            input.type = "radio";
+            input.name = "answer";
+            input.value = option;
+
+            const text = document.createElement("span");
+            text.textContent = option;
+
+            label.append(input, text);
+            answerOptions.append(label);
+        });
+
+        submitButton.disabled = true;
+        feedback.textContent = "";
+        isSubmitting = false;
+    }
 }
