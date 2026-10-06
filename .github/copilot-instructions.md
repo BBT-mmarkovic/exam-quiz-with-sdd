@@ -10,6 +10,8 @@ Use C# and ASP.NET Core MVC with Razor views; avoid legacy ASP.NET MVC 5.
 - Define feature requirements and testable acceptance criteria in `specs/` before implementation.
 - Ask about unclear requirements; do not invent product behavior.
 - Agree on an implementation plan before coding. Keep specifications and behavior aligned.
+- Review the relevant ADRs in `docs/architecture-decision-log/` and follow their accepted decisions.
+- Record important technical decisions in a new ADR; do not modify existing ADRs to reflect later decisions.
 - In German specifications and UI text, use proper umlauts (ä, ö, ü), not ae, oe, ue.
   Follow Swiss German spelling: use ss instead of ß.
 
