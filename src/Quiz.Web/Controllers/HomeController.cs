@@ -1,31 +1,34 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Quiz.Web.Models;
+using Quiz.Web.Services;
 
 namespace Quiz.Web.Controllers;
 
-public class HomeController : Controller
+public class HomeController(IQuizService quizService) : Controller
 {
-    private const string CorrectAnswer = "Ottawa";
-
     public IActionResult Index()
     {
-        return View();
+        return View(quizService.GetQuestion(0));
     }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult SubmitAnswer([FromForm] string? answer)
+    public IActionResult SubmitAnswer([FromForm] int questionIndex, [FromForm] string? answer)
     {
-        if (answer is not ("Toronto" or "Ottawa" or "Montreal" or "Vancouver"))
+        if (!ModelState.IsValid)
         {
             return BadRequest();
         }
 
-        var isCorrect = answer == CorrectAnswer;
-        var message = isCorrect ? "✅ richtig" : "❌ leider falsch";
-
-        return Json(new AnswerSubmissionResult(isCorrect, CorrectAnswer, message));
+        try
+        {
+            return Json(quizService.SubmitAnswer(questionIndex, answer));
+        }
+        catch (ArgumentException)
+        {
+            return BadRequest();
+        }
     }
 
     public IActionResult Privacy()

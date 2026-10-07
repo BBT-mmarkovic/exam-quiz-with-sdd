@@ -1,7 +1,18 @@
+using Microsoft.Extensions.Options;
+using Quiz.Web.Models;
+using Quiz.Web.Services;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Configuration.AddJsonFile("questionnaire.json", optional: false, reloadOnChange: false);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton<IValidateOptions<QuestionnaireOptions>, QuestionnaireOptionsValidator>();
+builder.Services.AddOptions<QuestionnaireOptions>()
+    .Bind(builder.Configuration)
+    .ValidateOnStart();
+builder.Services.AddSingleton<IQuizService, QuizService>();
 
 var app = builder.Build();
 
@@ -27,3 +38,5 @@ app.MapControllerRoute(
 
 
 app.Run();
+
+public partial class Program { }

@@ -1,31 +1,33 @@
 ﻿@{
-    ViewData["Title"] = "Eine Frage beantworten";
+    ViewData["Title"] = "Quiz";
 }
+@model Quiz.Web.Models.QuestionViewModel
 
 <section class="question-card" aria-labelledby="question-title">
-    <p class="eyebrow">Übungsfrage</p>
-    <h1 id="question-title">Wie lautet die Hauptstadt von Kanada?</h1>
+    <div id="quiz-progress" class="quiz-progress">
+        <div id="question-status" class="question-status" aria-live="polite">
+            Frag @(Model.Index + 1) von @Model.TotalQuestions
+        </div>
+        <progress id="question-progress" value="@(Model.Index + 1)" max="@Model.TotalQuestions"
+                  aria-label="Fortschritt im Quiz"></progress>
+    </div>
+    <p id="question-label" class="eyebrow">Übungsfrage</p>
+    <h1 id="question-title">@Model.Text</h1>
 
     <form id="answer-form" asp-controller="Home" asp-action="SubmitAnswer" method="post">
         @Html.AntiForgeryToken()
+        <input id="question-index" type="hidden" name="questionIndex" value="@Model.Index" />
         <fieldset id="answer-options" class="answer-options">
             <legend class="visually-hidden">Wähle eine Antwort</legend>
-            <label class="answer-option" for="answer-toronto">
-                <input id="answer-toronto" type="radio" name="answer" value="Toronto" />
-                <span>Toronto</span>
-            </label>
-            <label class="answer-option" for="answer-ottawa">
-                <input id="answer-ottawa" type="radio" name="answer" value="Ottawa" />
-                <span>Ottawa</span>
-            </label>
-            <label class="answer-option" for="answer-montreal">
-                <input id="answer-montreal" type="radio" name="answer" value="Montreal" />
-                <span>Montreal</span>
-            </label>
-            <label class="answer-option" for="answer-vancouver">
-                <input id="answer-vancouver" type="radio" name="answer" value="Vancouver" />
-                <span>Vancouver</span>
-            </label>
+            @for (var optionIndex = 0; optionIndex < Model.Options.Count; optionIndex++)
+            {
+                var option = Model.Options[optionIndex];
+                var inputId = $"answer-{Model.Index}-{optionIndex}";
+                <label class="answer-option" for="@inputId">
+                    <input id="@inputId" type="radio" name="answer" value="@option" />
+                    <span>@option</span>
+                </label>
+            }
         </fieldset>
 
         <button id="submit-answer" class="btn btn-primary answer-button" type="submit" disabled>
@@ -33,4 +35,8 @@
         </button>
         <p id="answer-feedback" class="answer-feedback" role="status" aria-live="polite"></p>
     </form>
+    <div id="quiz-result" class="quiz-result" hidden>
+        <h2 id="quiz-result-heading">Dein Ergebnis</h2>
+        <p id="quiz-result-score" role="status" aria-live="polite"></p>
+    </div>
 </section>
