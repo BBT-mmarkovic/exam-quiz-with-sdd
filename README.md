@@ -2,6 +2,8 @@
 
 A Questionnaire Application created using Spec Driven Development (SDD)
 
+![Overview](docs/img/overview.png)
+
 ## Spec Driven Development
 
 We define and agree on expected behavior before writing code, then implement and
