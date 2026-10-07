@@ -14,15 +14,18 @@
 - Ein zuständiger Quiz-Service liest die Fragen, liefert für die Anzeige nur
   Fragetext und Optionen und prüft übermittelte Antworten serverseitig. Die
   korrekte Antwort wird dabei nie an die Anzeige-View ausgegeben.
-- Der Controller rendert anfangs nur Frage 1 und stellt eine geschützte
+- Der Controller rendert anfangs nur Frage 1 samt initialem Fortschrittswert
+  und Status „Frag 1 von n“ und stellt eine geschützte
   Antwort-Action bereit. Diese prüft Frageindex und Auswahl, liefert bei
   Erfolg die nächste Frage ohne Lösungsschlüssel oder bei Abschluss das
   Prüfergebnis zurück. Ungültige Indizes oder Optionen werden als fehlerhafte
   Anfrage behandelt.
 - JavaScript hält den aktuellen Index und Punktestand ausschliesslich im
   Arbeitsspeicher der Seite. Es sendet pro Schritt die ausgewählte Option an
-  den Controller, zählt das vom Server zurückgegebene Ergebnis und zeigt ohne
-  Zwischenrückmeldung die nächste Frage. Nach der letzten Antwort zeigt es den
+  den Controller, zählt das vom Server zurückgegebene Ergebnis, aktualisiert
+  den Fortschrittsbalken und Status „Frag x von n“ und zeigt ohne
+  Zwischenrückmeldung die nächste Frage. Nach der letzten Antwort blendet es
+  Fortschritt und Fragen aus und zeigt die Überschrift „Dein Ergebnis“ samt
   Punktestand; Neuladen setzt den Ablauf zurück.
 - Es werden weder Quizfortschritt noch Antworten serverseitig gespeichert oder
   in Cookies, `localStorage` oder `sessionStorage` abgelegt.
@@ -39,8 +42,9 @@
 - `src/Quiz.Web/Controllers/HomeController.cs`
 - `src/Quiz.Web/Views/Home/Index.cshtml`
 - `src/Quiz.Web/wwwroot/js/site.js`
+- `src/Quiz.Web/wwwroot/css/site.css`
 - `src/Tests/Quiz.Web.Tests/` für Quiz-Service-, Controller- und
-  Konfigurationsvalidierungstests
+  Konfigurationsvalidierungstests sowie die Fortschritts- und Ergebnisanzeige
 - `specs/README.md` für den Feature-Status
 
 ## Testing
@@ -53,10 +57,11 @@
 - `dotnet build src/Quiz.sln` und `dotnet test src/Quiz.sln` müssen erfolgreich
   laufen.
 - Die Anwendung mit gültiger `questionnaire.json` starten und im Browser prüfen,
-  dass nur eine Frage gleichzeitig erscheint, Auswahl den Antwortbutton
-  aktiviert, jede Antwort automatisch zur nächsten Frage führt und das
-  Endergebnis exakt „x von n richtig“ lautet, wobei `n` der Anzahl der Fragen
-  in der Datei entspricht.
+  dass der Start „Frag 1 von n“ mit passendem Fortschrittsbalken zeigt und
+  jede automatisch geladene Frage Status und Balken korrekt aktualisiert.
+- Nach der letzten Antwort prüfen, dass Fortschrittsanzeige und Fragen
+  verschwinden, „Dein Ergebnis“ erscheint und das Ergebnis exakt „x von n
+  richtig“ lautet, wobei `n` der Anzahl der Fragen in der Datei entspricht.
 - Im Browser prüfen, dass die richtigen Antworten nicht vor der Prüfung
   ausgeliefert werden und Neuladen den Anfangszustand wiederherstellt.
 - Die Anwendung zusätzlich mit fehlender oder ungültiger Fragenkonfiguration

@@ -88,6 +88,10 @@ Richtige Antwort: **Elektronen**.
 - Zu Beginn wird nur Frage 1 mit ihren vier Optionen angezeigt. Keine Antwort
   ist ausgewählt; es gibt keine Rückmeldung und der Button „Antworten“ ist
   deaktiviert.
+- Vor dem Fragetext werden ein Fortschrittsbalken und der Status „Frag x von y“
+  angezeigt. `x` ist die Nummer der aktuell angezeigten Frage und `y` die
+  Gesamtzahl der konfigurierten Fragen; der Fortschrittsbalken zeigt den
+  entsprechenden Quizfortschritt.
 - Zu jedem Zeitpunkt wird höchstens eine Frage mit genau ihren vier Optionen
   angezeigt.
 - Pro Frage kann höchstens eine Option ausgewählt werden. Der Button
@@ -100,9 +104,11 @@ Richtige Antwort: **Elektronen**.
 - Fragen erscheinen in der Reihenfolge, in der sie in der Konfigurationsdatei
   definiert sind.
 - Nach der Antwort auf die letzte konfigurierte Frage wird keine weitere Frage
-  angezeigt. Stattdessen erscheint der Punktestand exakt im Format
-  „x von n richtig“, wobei `x` die Anzahl richtiger Antworten und `n` die
-  Gesamtzahl der konfigurierten Fragen ist.
+  angezeigt. Stattdessen erscheint die Überschrift „Dein Ergebnis“ und der
+  Punktestand exakt im Format „x von n richtig“, wobei `x` die Anzahl richtiger
+  Antworten und `n` die Gesamtzahl der konfigurierten Fragen ist. Der
+  Fortschrittsbalken und der Fragestatus sind auf der Ergebnisseite nicht
+  sichtbar.
 - Die richtige Antwort wird nicht vor der Prüfung im HTML oder JavaScript
   offengelegt.
 - Die Frageninhalte und richtigen Antworten werden zur Laufzeit aus der
