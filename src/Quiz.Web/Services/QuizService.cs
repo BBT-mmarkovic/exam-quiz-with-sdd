@@ -51,6 +51,6 @@ public sealed class QuizService(IOptions<QuestionnaireOptions> questionnaire) : 
         var options = question.Options
             ?? throw new InvalidOperationException($"Frage {index + 1} hat keine Antwortoptionen.");
 
-        return new QuestionViewModel(index, text, options);
+        return new QuestionViewModel(index, _questions.Count, text, options);
     }
 }

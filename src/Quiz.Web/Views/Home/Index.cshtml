@@ -4,6 +4,13 @@
 @model Quiz.Web.Models.QuestionViewModel
 
 <section class="question-card" aria-labelledby="question-title">
+    <div id="quiz-progress" class="quiz-progress">
+        <div id="question-status" class="question-status" aria-live="polite">
+            Frag @(Model.Index + 1) von @Model.TotalQuestions
+        </div>
+        <progress id="question-progress" value="@(Model.Index + 1)" max="@Model.TotalQuestions"
+                  aria-label="Fortschritt im Quiz"></progress>
+    </div>
     <p id="question-label" class="eyebrow">Übungsfrage</p>
     <h1 id="question-title">@Model.Text</h1>
 
@@ -28,5 +35,8 @@
         </button>
         <p id="answer-feedback" class="answer-feedback" role="status" aria-live="polite"></p>
     </form>
-    <p id="quiz-result" class="quiz-result" role="status" aria-live="polite" hidden></p>
+    <div id="quiz-result" class="quiz-result" hidden>
+        <h2 id="quiz-result-heading">Dein Ergebnis</h2>
+        <p id="quiz-result-score" role="status" aria-live="polite"></p>
+    </div>
 </section>

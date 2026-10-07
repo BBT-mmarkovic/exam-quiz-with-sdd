@@ -1,6 +1,6 @@
 # Tasks: Mehrere Fragen nacheinander beantworten
 
-1. [ ] UI-Prüfung für Fortschrittsstatus, Balkenaktualisierung und
+1. [x] UI-Prüfung für Fortschrittsstatus, Balkenaktualisierung und
    Ergebnisüberschrift ergänzen.
 2. [x] Unit-Tests für Konfigurationsvalidierung, Frage-Reihenfolge,
    Antwortoptionen, richtige/falsche Antworten und ungültige Eingaben schreiben.
@@ -15,9 +15,9 @@
    Anzeige ausgibt.
 6. [x] Controller auf den Quiz-Service umstellen und eine geschützte
    Antwort-Action für gültige Auswahl und Frageindex ergänzen.
-7. [ ] Razor-Ansicht um barrierefreien Fortschrittsbalken mit dem Status „Frag
+7. [x] Razor-Ansicht um barrierefreien Fortschrittsbalken mit dem Status „Frag
    x von n“ vor dem Fragetext und Ergebnisüberschrift „Dein Ergebnis“ ergänzen.
-8. [ ] JavaScript/CSS für Fortschrittsaktualisierung je Frage sowie das
+8. [x] JavaScript/CSS für Fortschrittsaktualisierung je Frage sowie das
    Ausblenden der Fortschrittsanzeige auf der Ergebnisseite ergänzen.
-9. [ ] Build, Tests, Browserablauf, Neustartverhalten und Fehler bei fehlender
+9. [x] Build, Tests, Browserablauf, Neustartverhalten und Fehler bei fehlender
    oder ungültiger Konfiguration prüfen.

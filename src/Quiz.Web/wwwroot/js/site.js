@@ -6,8 +6,12 @@ if (answerForm) {
     const feedback = answerForm.querySelector("#answer-feedback");
     const questionTitle = document.querySelector("#question-title");
     const questionLabel = document.querySelector("#question-label");
+    const progressContainer = document.querySelector("#quiz-progress");
+    const questionStatus = document.querySelector("#question-status");
+    const questionProgress = document.querySelector("#question-progress");
     const questionIndex = answerForm.querySelector("#question-index");
     const resultSummary = document.querySelector("#quiz-result");
+    const resultScore = document.querySelector("#quiz-result-score");
     let correctAnswers = 0;
     let isSubmitting = false;
 
@@ -49,7 +53,8 @@ if (answerForm) {
                 answerForm.hidden = true;
                 questionTitle.hidden = true;
                 questionLabel.hidden = true;
-                resultSummary.textContent = `${correctAnswers} von ${result.totalQuestions} richtig`;
+                progressContainer.hidden = true;
+                resultScore.textContent = `${correctAnswers} von ${result.totalQuestions} richtig`;
                 resultSummary.hidden = false;
                 return;
             }
@@ -66,6 +71,9 @@ if (answerForm) {
     function renderQuestion(question) {
         questionTitle.textContent = question.text;
         questionIndex.value = question.index;
+        questionStatus.textContent = `Frag ${question.index + 1} von ${question.totalQuestions}`;
+        questionProgress.max = question.totalQuestions;
+        questionProgress.value = question.index + 1;
         answerOptions.disabled = false;
         answerOptions.replaceChildren();
 
